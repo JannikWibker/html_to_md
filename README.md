@@ -19,5 +19,5 @@ console.log(html_to_md(html, 'body')[0])
 // ->
 // -> This is just some text
 
-// the 'body' is a selector (works just like document.querySelectorAll). The default is 'body'. 
+// the 'body' is a selector (works just like document.querySelectorAll). The default is 'body'.
 ```

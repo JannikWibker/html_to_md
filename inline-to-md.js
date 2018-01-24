@@ -26,7 +26,14 @@ const inline = ({ filter_object, transform, _range, range, _remove_whitespace, r
     const sub_to_md = (sub) => sub.children.filter(x => x.name === 'a')[0]
       ? `</sub>{${sub.children.map(_inline, true).join('')}}</sub>`
       : `~${sub.children.map(_inline, true).join('')}~`
-    const list_to_md = (list) => `` // use isStrictlyInline
+    const list_to_md = (list) => {
+      console.log(list)
+      return '\n' + list.children
+        .filter(x => x.type === 'tag' && x.name === 'li')
+        .map((li, i) => `${list.name === 'ul' ? '-' : (i+1) + '.'} ${li.children.map(_inline, true).join('')}`)
+        .join('\n') + '\n'
+    }
+    // use isStrictlyInline
     const code_to_md = (code) => `\`${code.children.map(_inline)}\``
 
     const heading_to_md = (nr, heading) => `\n\n${'#'.repeat(nr)} ${heading.children.map(_inline).join('')}\n\n`
